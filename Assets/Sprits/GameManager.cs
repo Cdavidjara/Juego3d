@@ -144,6 +144,11 @@ public class GameManager : MonoBehaviour
         obstaculo.transform.position = new Vector3(ranX, -1.5f, 0);
     }
 
+    public int ObtenerContadorBananas()
+    {
+        return contadorBananas;
+    }
+
     public void RecogerBanana(GameObject bananaRecogida)
     {
         contadorBananas++;
@@ -161,29 +166,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Método para mostrar "Ganaste" y reiniciar el juego
+    public void GameOver()
+    {
+        gameOver = true;
+        menuOver.SetActive(true);
+    }
+
     void Ganaste()
     {
         Debug.Log("¡Ganaste!");
-        // Mostrar el mensaje de "Ganaste"
         textoGanaste.gameObject.SetActive(true);
-        // Desactivar el juego
         gameStart = false;
         gameOver = true;
-        // Mostrar el menú de inicio
         menuStart.SetActive(true);
-    }
-
-    // Método para reiniciar el juego
-    void ReiniciarJuego()
-    {
-        // Reiniciar el contador de bananas
-        contadorBananas = 0;
-        ActualizarContadorBananas();
-        // Ocultar el menú de inicio
-        menuStart.SetActive(false);
-        // Reiniciar el juego
-        gameStart = true;
-        gameOver = false;
     }
 }
